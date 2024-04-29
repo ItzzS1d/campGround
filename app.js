@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const userRoute = require("./routes/users");
 const User = require("./models/user");
 const passport = require("passport");
