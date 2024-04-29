@@ -1,0 +1,23 @@
+<% layout("layouts/boilerplate.ejs") %>
+
+<div
+  class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1 d-flex justify-content-center"
+>
+  <% for(let camp of result) {%>
+  <div class="card campCard" style="width: 20rem">
+    <a href="/campgrounds/<%= camp.id %>"
+      ><img
+        src="<%= camp.image.url %>"
+        class="card-img-top mb-2"
+        st
+        alt="campground"
+    /></a>
+    <div class="card-body">
+      <b class="card-title"> <%= camp.title %>.</b><br />
+      <b class="card-title"><%= camp.location %></b><br />
+
+      &#8377; <b><%=camp.price.toLocaleString("en-US") %></b> / night
+    </div>
+  </div>
+  <% } %>
+</div>
