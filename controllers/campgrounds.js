@@ -6,6 +6,10 @@ const geocodingClient = geocoding({ accessToken: mapToken });
 
 module.exports.index = async (req, res, next) => {
   let result = await Campground.find({});
+  if (!result) {
+    res.render("campgrounds/spinner");
+  }
+
   res.render("campgrounds/index", { result });
 };
 module.exports.newCampForm = (req, res) => {

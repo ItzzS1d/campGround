@@ -80,6 +80,7 @@ app.use("/campgrounds", camgroundRoute);
 app.use("/campgrounds/:id/review", reviewRoute);
 app.use("/", userRoute);
 
+
 app.use("*", (req, res) => {
   throw new ExpressError(404, "CampGround Does Not Exist");
 });
@@ -103,3 +104,4 @@ app.use((err, req, res, next) => {
   const { status = 500, message = "Something went Wrong" } = err;
   res.status(status).render("campgrounds/error", { message });
 });
+
