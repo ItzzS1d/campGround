@@ -1,6 +1,7 @@
 const Campground = require("./models/campground");
 const { joireviewSchema } = require("./utils/schema");
 const { joicampGroundSchema } = require("./utils/schema");
+const validator = require("validator");
 const ExpressError = require("./utils/ErrorClass");
 module.exports.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
@@ -51,3 +52,5 @@ module.exports.validateReview = (req, res, next) => {
     next();
   }
 };
+
+

@@ -1,4 +1,4 @@
-if(process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
@@ -44,7 +44,6 @@ const store = MongoStore.create({
   },
   mongoUrl: process.env.ATLASDB_URL,
   touchAfter: 24 * 3600,
-  
 });
 app.use(
   session({

@@ -1,6 +1,7 @@
 const ExpressError = require("../utils/ErrorClass");
 const Campground = require("../models/campground");
 const User = require("../models/user");
+const validator = require("validator");
 
 module.exports.registerUserForm = (req, res) => {
   res.render("users/register");
@@ -9,9 +10,25 @@ module.exports.registerUserForm = (req, res) => {
 module.exports.registerUser = async (req, res, next) => {
   try {
     const { email, username, password } = req.body;
+    console.log(validator.isStrongPassword(password));
+    if (!validator.isEmail(email)) {
+      throw new ExpressError(400, "Invalid Email");
+    }
+    if (!validator.isStrongPassword(password)) {
+      throw new ExpressError(
+        400,
+        "Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one number, and one special character."
+      );
+    }
+    if (!validator.isLength(username, { min: 3, max: 20 })) {
+      throw new ExpressError(
+        400,
+        "Username must be between 3 and 20 characters"
+      );
+    }
+
     let newUser = new User({ email, username });
     let registredUser = await User.register(newUser, password);
-
     req.login(registredUser, (err) => {
       if (err) return next(err);
       req.flash("success", "WELCOME TO CAMPGROUND");

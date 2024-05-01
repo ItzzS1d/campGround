@@ -6,10 +6,14 @@ const campGroundSchema = new mongoose.Schema({
   title: {
     type: String,
     required: [true, "title is required"],
+    validate(value) {
+      
+    }
   },
   image: {
     url: String,
     filename: String,
+   
   },
   price: {
     type: Number,
