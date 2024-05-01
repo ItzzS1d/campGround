@@ -10,7 +10,7 @@ module.exports.registerUserForm = (req, res) => {
 module.exports.registerUser = async (req, res, next) => {
   try {
     const { email, username, password } = req.body;
-    console.log(validator.isStrongPassword(password));
+    
     if (!validator.isEmail(email)) {
       throw new ExpressError(400, "Invalid Email");
     }
