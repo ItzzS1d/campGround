@@ -10,7 +10,7 @@ module.exports.registerUserForm = (req, res) => {
 module.exports.registerUser = async (req, res, next) => {
   try {
     const { email, username, password } = req.body;
-    
+
     if (!validator.isEmail(email)) {
       throw new ExpressError(400, "Invalid Email");
     }
@@ -45,7 +45,6 @@ module.exports.loginForm = (req, res) => {
 };
 
 module.exports.loginUser = (req, res) => {
-  req.flash("success", "Welcome back!");
   const redirectUrl = res.locals.returnTo || "/campgrounds";
   delete req.session.returnTo;
   res.redirect(redirectUrl);
@@ -56,7 +55,6 @@ module.exports.logOut = (req, res, next) => {
     if (err) {
       next(err);
     } else {
-      req.flash("success", "goodby");
       res.redirect("/campgrounds");
     }
   });

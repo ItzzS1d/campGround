@@ -28,7 +28,7 @@ const MongoStore = require("connect-mongo");
 
 const mongoose = require("mongoose");
 async function main() {
-  await mongoose.connect(process.env.ATLASDB_URL);
+   mongoose.connect(process.env.ATLASDB_URL);
 }
 main()
   .then(() => console.log("mongoose server started"))
@@ -75,6 +75,7 @@ app.use((req, res, next) => {
 
   next();
 });
+
 
 app.use("/campgrounds", camgroundRoute);
 app.use("/campgrounds/:id/review", reviewRoute);
